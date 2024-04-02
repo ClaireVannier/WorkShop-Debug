@@ -1,11 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { Task } from '../models/task.model';
-import {
-  Validators,
-  FormGroup,
-  FormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-create-task',
@@ -17,9 +12,11 @@ import {
 export class CreateTaskComponent {
   @Output() newTask: EventEmitter<Task> = new EventEmitter();
 
-  taskForm = new FormGroup({
-    content: new FormControl('', Validators.required),
-    done: new FormControl(false),
+  formBuilder = inject(FormBuilder)
+
+  taskForm = this.formBuilder.group({
+    content: ['', Validators.required],
+    done: [false],
   });
 
   sendTaskToApp() {
