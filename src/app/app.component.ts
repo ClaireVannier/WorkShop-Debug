@@ -35,4 +35,16 @@ export class AppComponent {
       task.content.includes(searchedTerm)
     );
   }
+
+  showAllTasks(): void {
+    this.filteredTaskList = this.taskList;
+  }
+
+  showCompletedTasks(): void {
+    this.filteredTaskList = this.taskList.filter(task => task.done);
+  }
+
+  showActiveTasks(): void {
+    this.filteredTaskList = this.taskList.filter(task => !task.done);
+  }
 }
