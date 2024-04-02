@@ -1,6 +1,4 @@
 <h1>To Do List</h1>
-<app-task-search
-  (searchTermChange)="searchedTaskReceive()"
-></app-task-search>
-<app-task-list filteredTaskList="filteredTaskList"></app-task-list>
-<app-create-task (newTask)="newTaskReceive()"></app-create-task>
+<app-task-search (searchTermChange)="searchedTaskReceive($event)" />
+<app-create-task (newTask)="newTaskReceive($event)" /> 
+<app-task-list [filteredTaskList]="filteredTaskList" />

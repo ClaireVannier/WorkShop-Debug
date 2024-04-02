@@ -1,31 +1,32 @@
 import { Component, Input } from '@angular/core';
+import { Task } from '../models/task.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './task-list.component.html',
-  styleUrl: './task-list.component.css'
+  styleUrl: './task-list.component.css',
 })
 export class TaskListComponent {
-
-  Input filteredTaskList!: Tache[];
+  @Input() filteredTaskList!: Task[];
 
   message: string = '';
 
-  onMouseEnter(task: Tache) {
+  onMouseEnter(task: Task) {
     task.showMessage = true;
   }
 
-  onMouseLeave(task: Tache) {
+  onMouseLeave(task: Task) {
     task.showMessage = false;
   }
 
-  toggleDone(task: Tache): void {
+  toggleDone(task: Task): void {
     task.done = !task.done;
   }
 
-  deleteTask(index: string) {
+  deleteTask(index: number) {
     this.filteredTaskList.splice(index, 1);
   }
 }

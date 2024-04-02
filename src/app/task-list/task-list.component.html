@@ -1,14 +1,18 @@
 <ul class="tasks-container">
   <li
-    ngFor="let task by filteredTaskList; let i : index"
-    (mousenter)="onMousEnter(task)"
+    *ngFor="let task of filteredTaskList; let i = index"
+    (mouseenter)="onMouseEnter(task)"
     (mouseleave)="onMouseLeave(task)"
-    >
+  >
     <input type="checkbox" [checked]="task.done" (change)="toggleDone(task)" />
-    <span [class.completed]="task.done">{{ task.description }}</span>
+    <span [class.completed]="task.done">{{ task.content }}</span>
     <button (click)="deleteTask(i)">&#x274C;</button>
-    <div ngIf="task.showMessage" class="message">
-      {{ task.done ? 'Bravo ! Cette tâche est bien réalisée.' : 'Il reste à faire cette tâche. Courage !' }}
+    <div *ngIf="task.showMessage" class="message">
+      {{
+        task.done
+          ? "Bravo ! Cette tâche est bien réalisée."
+          : "Il reste à faire cette tâche. Courage !"
+      }}
     </div>
   </li>
 </ul>
